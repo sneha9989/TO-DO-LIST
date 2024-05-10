@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>To-do List</title>
+       
+        <style>
+          *
+          {
+            background-color:  #040F16;
+            margin: 0;
+          }
+          h1{
+            color: white;
+            margin-left: 35%;
+            margin-top: 5%;
+            font-size: 3rem; 
+          }
+          .container
+          {
+            width: 60%;
+            margin-top: 5%;
+            margin-left: 15%;
+          }
+          input:hover
+          {
+            background-color: white;
+            color: black;
+          }
+          input:active
+          {
+            background-color: white;
+            color: black;
+          }
+          .nc
+          {
+            margin-bottom: 4%;
+          }
+          .nc .task 
+          {
+           color: red;
+            border-left: 10px solid red;
+            
+          }
+          .c .task 
+          {
+            color: green;
+            border-left: 10px solid green;
+          }
+          input{
+            width:100%;
+            padding: 3px;
+            background-color: #063146;
+            padding: 1rem;
+            border-radius: 1rem;
+            margin:20px ;
+            font-size: 1.5rem;
+          }
+          h2{
+            color: pink;
+            margin-left: 20px;
+          }
+          .task
+          {
+            width:100%;
+            padding: 3px;
+            background-color: #063146;
+            padding: 1rem;
+            border-radius: 1rem;
+            margin:20px ;
+            font-size: 1.5rem;
+          }
+          i{
+            float: right;
+            margin-left: 10px;
+            background-color:#063146 ;
+          }
+          .rgt
+          {
+            color: green;
+          }
+          .can{
+            color: red;
+          }
+          
+        </style>
+    </head>
+    <body>
+        <h1>TO-DO LIST</h1>
+       
+        <div class="container">
+            <input  type="text" class="ipbox" placeholder="Enter something" >
+            <h2>TASKS</h2>
+            <div class="nc"></div>
+            <div class="c"></div>
+        </div>
+    </body>
+    <script src="https://kit.fontawesome.com/4180bcae04.js" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script>
+    <script>
+           $(document).ready(function()
+           {
+            $(".ipbox").keydown(function(e)
+            {
+                if(e.keyCode==13&&$(".ipbox").val()!="")
+                {
+                    let task=$("<div class=task></div>").text($(".ipbox").val());
+                    let del=$("<i class='fa-solid fa-trash-can can'></i>").click(function()
+                    {
+                        let a=$(this).parent();
+                        a.fadeOut();
+                        $(this).remove();
+                    })
+                    let crt=$("<i class='fa-sharp fa-solid fa-circle-check rgt'></i>")
+                    .click(function()
+                    {
+                        let a=$(this).parent();            
+                        a.fadeOut(function()
+                        {
+                            $(".c").append(a);
+                            a.fadeIn();
+                        });
+                        $(this).remove();
+                    })
+                    
+                    task.append(del,crt);
+                    $(".nc").append(task);
+                    $(".ipbox").val('');
+
+                }
+            })
+           })
+    </script>
+</html>
